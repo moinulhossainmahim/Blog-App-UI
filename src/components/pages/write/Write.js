@@ -3,6 +3,11 @@ import "./write.css";
 export default function Write() {
   return (
     <div className='write'>
+      <img
+        className='write-img'
+        src='https://media.istockphoto.com/photos/cute-kitten-licking-glass-table-with-copy-space-picture-id1293763250'
+        alt=''
+      />
       <form className='write-form'>
         <div className='write-form-group'>
           <label htmlFor='file-input'>
