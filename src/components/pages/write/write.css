@@ -1,0 +1,32 @@
+input[type="file"] {
+  display: none;
+}
+
+.write {
+  padding-top: 50px;
+}
+
+.write-form-group {
+  margin-left: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.write-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid;
+  font-size: 20px;
+  color: rgb(153, 149, 149);
+}
+
+.write-input {
+  font-size: 30px;
+  border: none;
+  padding: 20px;
+  width: 70vw;
+}
