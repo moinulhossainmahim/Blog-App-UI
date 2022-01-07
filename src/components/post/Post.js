@@ -1,34 +1,29 @@
 import "./post.css";
+import { Link } from "react-router-dom";
 
-export default function Post() {
+export default function Post({ post }) {
   return (
     <div className='post'>
-      <img
-        className='post-img'
-        src='https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80'
-        alt=''
-      />
+      {post.photo && <img className='post-img' src={post.photo} alt='' />}
       <div className='post-info'>
         <div className='post-cats'>
-          <span className='post-cat'>Music</span>
-          <span className='post-cat'>Life</span>
+          {post.categories.map((category) => {
+            return (
+              <span key={new Date.getTime().toString()} className='post-cat'>
+                {category.name}
+              </span>
+            );
+          })}
         </div>
-        <span className='post-title'>Lorem ipsum dolor sit amet</span>
+        <Link to={`/posts/${post._id}`} className='top-link'>
+          <span className='post-title'>{post.title}</span>
+        </Link>
         <hr />
-        <span className='post-date'>1 hour ago</span>
+        <span className='post-date'>
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
-      <p className='post-desc'>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum placeat
-        recusandae quaerat doloribus deleniti repellat facere vitae. Rerum, ut
-        hic quis quas exercitationem, similique quisquam, iste aut quaerat
-        mollitia commodi? Lorem, ipsum dolor sit amet consectetur adipisicing
-        elit. Illum placeat recusandae quaerat doloribus deleniti repellat
-        facere vitae. Rerum, ut hic quis quas exercitationem, similique
-        quisquam, iste aut quaerat mollitia commodi? Lorem, ipsum dolor sit amet
-        consectetur adipisicing elit. Illum placeat recusandae quaerat doloribus
-        deleniti repellat facere vitae. Rerum, ut hic quis quas exercitationem,
-        similique quisquam, iste aut quaerat mollitia commodi?
-      </p>
+      <p className='post-desc'>{post.desc}</p>
     </div>
   );
 }

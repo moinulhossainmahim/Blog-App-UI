@@ -33,8 +33,8 @@ export default function Topbar() {
         <Link to='/login' className='top-link top-right-login'>
           LOGIN
         </Link>
-        <Link to='/' className='top-link'>
-          LOGOUT
+        <Link to='/register' className='top-link'>
+          REGISTER
         </Link>
         <i className='search-icon fas fa-search'></i>
       </div>
