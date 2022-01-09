@@ -1,7 +1,10 @@
 import "./Topbar.css";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../../context/context";
+import { PF } from "../singlePost/SinglePost";
 
 export default function Topbar() {
+  const { user, handleLogout } = useGlobalContext();
   return (
     <div className='top'>
       <div className='top-left'>
@@ -24,18 +27,26 @@ export default function Topbar() {
           <Link to='/write' className='top-link toplist-item'>
             WRITE
           </Link>
-          <Link to='/' className='top-link toplist-item'>
-            LOGOUT
+          <Link to='/' className='top-link toplist-item' onClick={handleLogout}>
+            {user && "LOGOUT"}
           </Link>
         </div>
       </div>
       <div className='top-right'>
-        <Link to='/login' className='top-link top-right-login'>
-          LOGIN
-        </Link>
-        <Link to='/register' className='top-link'>
-          REGISTER
-        </Link>
+        {user ? (
+          <Link to='/settings'>
+            <img className='top-img' src={PF + user.profilePic} alt='' />
+          </Link>
+        ) : (
+          <div>
+            <Link to='/login' className='top-link top-right-login'>
+              LOGIN
+            </Link>
+            <Link to='/register' className='top-link'>
+              REGISTER
+            </Link>
+          </div>
+        )}
         <i className='search-icon fas fa-search'></i>
       </div>
     </div>

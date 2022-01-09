@@ -10,6 +10,14 @@
   z-index: 999;
 }
 
+.top-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
 .top-left,
 .top-right {
   display: flex;

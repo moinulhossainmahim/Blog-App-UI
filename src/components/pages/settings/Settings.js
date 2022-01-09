@@ -1,7 +1,20 @@
+import React from "react";
 import "./settings.css";
 import Sidebar from "./../../sidebar/Sidebar";
+import { useGlobalContext } from "../../../context/context";
+import { PF } from "../../singlePost/SinglePost";
 
 export default function Setting() {
+  const {
+    user,
+    file,
+    setUsername,
+    setPassword,
+    success,
+    setEmail,
+    handleUserUpdate,
+  } = useGlobalContext();
+
   return (
     <div className='settings'>
       <div className='settings-wrapper'>
@@ -9,12 +22,12 @@ export default function Setting() {
           <span className='settings-update-title'>Update Your Account</span>
           <span className='settings-delete-title'>Delete Account</span>
         </div>
-        <form className='settings-form'>
+        <form className='settings-form' onSubmit={handleUserUpdate}>
           <label>Profile Picture</label>
           <div className='settings-pp'>
             <img
               className='settings-img'
-              src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80'
+              src={file ? URL.createObjectURL(file) : PF + user.profilePic}
               alt=''
             />
             <label htmlFor='file-input'>
@@ -23,12 +36,28 @@ export default function Setting() {
             <input type='file' id='file-input' className='user-input' />
           </div>
           <label>Username</label>
-          <input type='text' placeholder='safak' />
+          <input
+            type='text'
+            placeholder={user.username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <label>Email</label>
-          <input type='email' placeholder='safak@gmail.com' />
+          <input
+            type='email'
+            placeholder={user.email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label>Password</label>
-          <input type='password' />
-          <button className='settings-submit'>Update</button>
+          <input
+            type='password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className='settings-submit' type='submit'>
+            Update
+          </button>
+          {success && (
+            <span className='success-msg'>profile has been updated</span>
+          )}
         </form>
       </div>
       <Sidebar />

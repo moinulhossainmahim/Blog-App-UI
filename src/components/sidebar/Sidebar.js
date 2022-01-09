@@ -35,10 +35,12 @@ export default function Sidebar() {
           <ul className='sidebar-list'>
             {categories.map((category) => {
               return (
-                <Link to={`/?cat=${category.name}`} className='top-link'>
-                  <li key={category._id} className='sidebar-list-item'>
-                    {category.name}
-                  </li>
+                <Link
+                  key={category._id}
+                  to={`/?cat=${category.name}`}
+                  className='top-link'
+                >
+                  <li className='sidebar-list-item'>{category.name}</li>
                 </Link>
               );
             })}
